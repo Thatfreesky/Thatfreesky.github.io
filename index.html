@@ -341,8 +341,12 @@
         
           
             <p>前馈神经网络是一种非线性分类器。</p>
-<h2 id="神经元"><a href="#神经元" class="headerlink" title="神经元"></a>神经元</h2><p>神经元是神经网络的基本单位，类似于<a href="https://zh.wikipedia.org/wiki/%E6%84%9F%E7%9F%A5%E5%99%A8" target="_blank" rel="external">感知机</a></p>
-
+<h2 id="神经元"><a href="#神经元" class="headerlink" title="神经元"></a>神经元</h2><p>神经元是神经网络的基本单位，类似于<a href="https://zh.wikipedia.org/wiki/%E6%84%9F%E7%9F%A5%E5%99%A8" target="_blank" rel="external">感知机</a>. 若输入用向量 $\mathbf x = (x_1, x_2, x<em>3, 1)$ 表示输入，$h</em>{W, b}(\mathbf x)$, 表示输出，$W, b$ 为参数。一个神经元就可以看做是一个输入空间到输出空间的映射，具体来讲是一个线性函数和一个非线性激励函数的复合映射：</p>
+<p>\[<br>h<em>{W, b}(\mathbf x) = f(\mathbf W^T \mathbf x) = f(\sum</em>{i = 1}^3 W_i x_i +b)<br>\]</p>
+<p>其中 $f(\mathcal z) : \mathcal R \rightarrow \mathcal R$ 为<a href="https://en.wikipedia.org/wiki/Activation_function" target="_blank" rel="external">激励函数</a>，常用的如 sigmoid 函数：</p>
+<p>\[<br>f(\mathcal z) = \frac{1}{1 + \exp(- z)}<br>\]</p>
+<p>如图</p>
+<img src="/2017/01/03/前馈神经网络/SingleNeuron.png" alt="Single Neuron" title="Single Neuron">
           
         
       
