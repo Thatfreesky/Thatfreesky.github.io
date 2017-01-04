@@ -238,7 +238,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/04/后向传播算法/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/04/反向传播算法/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="iridium">
@@ -263,8 +263,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/01/04/后向传播算法/" itemprop="url">
-                  后向传播算法
+                <a class="post-title-link" href="/2017/01/04/反向传播算法/" itemprop="url">
+                  梯度下降算法
                 </a>
               
             
@@ -341,11 +341,31 @@
         
           
             <p>本文主要参考了 <a href="http://ufldl.stanford.edu/wiki/index.php/Backpropagation_Algorithm" target="_blank" rel="external">Backpropagation Algorithm</a></p>
-<p>假设我们有一个<a href="">神经网络</a>和 $m$ 个数据点的训练集 $\{(\mathbf x^{(1)}, \mathbf y^{(1)}), \dotsc, (\mathbf x^{(m)}, \mathbf y^{(m)})\}$. 对一个数据点 $(\mathbf x, \mathbf y)$ 可以定义 cost function 为</p>
-<p>$$<br>J(\mathcal W, \mathcal b, \mathbf x, \mathbf y) = \frac{1}{2} \lVert h_{\mathcal W, \mathcal b}(\mathbf x) - \mathbf y \rVert^2.<br>$$</p>
+<p>假设我们有一个<a href="https://thatfreesky.github.io/2017/01/03/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" target="_blank" rel="external">神经网络</a>和 $m$ 个数据点的训练集 $\{(\mathbf x^{(1)}, \mathbf y^{(1)}), \dotsc, (\mathbf x^{(m)}, \mathbf y^{(m)})\}$. 对一个数据点 $(\mathbf x, \mathbf y)$ 可以定义 cost function 为</p>
+<p>\begin{equation}\label{cf}<br>J(\mathcal W, \mathcal b; \mathbf x, \mathbf y) = \frac{1}{2} \lVert h_{\mathcal W, \mathcal b}(\mathbf x) - \mathbf y \rVert^2.<br>\end{equation}</p>
 <p>对于所有数据点的全局 cost function 可以定义为</p>
-<p>$$<br>J(\mathcal W, \mathcal b) = \left[ \frac{1}{m} \sum_{i = 1}^m J(\mathcal W, \mathcal b, \mathbf x^{(i)}, \mathbf y^{(i)}) \right] + \frac{\lambda}{2} \lVert \mathcal W \rVert<br>$$</p>
+<p>\begin{equation}\label{ocf}<br>J(\mathcal W, \mathcal b) = \left[ \frac{1}{m} \sum_{k = 1}^m J(\mathcal W, \mathcal b; \mathbf x^{(k)}, \mathbf y^{(k)}) \right] + \frac{\lambda}{2} \lVert \mathcal W \rVert<br>\end{equation}</p>
 <p>其中，第一项为所有数据点的 cost function 函数平均值， 第二项是正则化项，可以减小权重值避免过拟合。</p>
+<p>由此，训练网络的过程就是寻找合适的 $\mathcal W$ 和 $\mathcal b$ 使 cost function 最小化。首先，初始化参数 $(\mathcal W, \mathcal b)$, 再选择合适的优化算法如 batch gradient descent 求解。</p>
+<p>梯度下降算法中，对于 $l$ 层的一个权值参数和一个偏置参数其更新方法应该是</p>
+<p>\begin{equation*}<br>\begin{split}<br>W_{ij}^{(l)} &amp; = W_{ij}^{(l)} - \alpha \frac{\partial}{\partial W_{ij}^{(l)}} J(\mathcal W, \mathcal b)\\<br>b_i^{(l)} &amp; = b_i^{(l)} - \alpha \frac{\partial}{\partial b_i^{(l)}} J(\mathcal W, \mathcal b)<br>\end{split}<br>\end{equation*}</p>
+<p>其中， $\alpha$ 是学习率。可知上式的关键是对模型的参数求偏微分，由 \eqref{ocf} 可知</p>
+<p>\begin{align*}<br>\frac{\partial}{\partial W_{ij}^{(l)}} J(\mathcal W, \mathcal b) &amp; = \left[ \frac{1}{m} \sum_{k = 1}^m \frac{\partial}{\partial W_{ij}^{(l)}} J(\mathcal W, \mathcal b; \mathbf x^{(k)}, \mathbf y^{(k)}) \right] + \lambda W_{ij}^{(l)}\\<br>\frac{\partial}{\partial b_i^{(l)}} J(\mathcal W, \mathcal b) &amp; = \frac{1}{m} \sum_{k = 1}^m \frac{\partial}{\partial b_{i}^{(l)}} J(\mathcal W, \mathcal b; \mathbf x^{(k)}, \mathbf y^{(k)})<br>\end{align*}</p>
+<p>反向传播算法提供了一种有效计算 $\frac{\partial}{\partial W_{ij}^{(l)}} J(\mathcal W, \mathcal b; \mathbf x^{(k)}, \mathbf y^{(k)})$ 和 $\frac{\partial}{\partial b_{i}^{(l)}} J(\mathcal W, \mathcal b; \mathbf x^{(k)}, \mathbf y^{(k)})$ 的方法。</p>
+<p>基于此，我们可以重写矩阵形式的 batch gradient descent 算法</p>
+<ul>
+<li>对网络的每一层，设 $\Delta \mathbf W^{(l)}$ 为与 $\mathbf W^{(l)}$ 形状相同的 $\mathbf 0$ 矩阵， $\Delta \mathbf b^{(l)}$ 为与 $\mathbf b^{(l)}$ 形状相同的 $\mathbf 0$ 向量。</li>
+<li>对 $k = 1$ 到 $m$,<ul>
+<li>用反向传播算法计算 $\nabla_{\mathbf W^{(l)}} J(\mathcal W, \mathcal b; \mathbf x^{(k)}, \mathbf y^{(k)})$ 和 $\nabla_{\mathbf b^{(l)}} J(\mathcal W, \mathcal b; \mathbf x^{(k)}, \mathbf y^{(k)})$.</li>
+<li>$\Delta \mathbf W^{(l)} = \Delta \mathbf W^{(l)} \oplus \nabla_{\mathbf W^{(l)}} J(\mathcal W, \mathcal b; \mathbf x^{(k)}, \mathbf y^{(k)})$.</li>
+<li>$\Delta \mathbf b^{(l)} = \Delta \mathbf b^{(l)} \oplus \nabla_{\mathbf b^{(l)}} J(\mathcal W, \mathcal b; \mathbf x^{(k)}, \mathbf y^{(k)})$.</li>
+</ul>
+</li>
+<li>更新每一层的参数<br>\begin{align*}<br>\mathbf W^{(l)} &amp; = \mathbf W^{(l)} - \alpha \left[\left( \frac{1}{m} \Delta \mathbf W^{(l)} \right) + \mathbf\lambda \mathbf W^{(l)} \right]\\<br>\mathbf b^{(l)} &amp; = \mathbf b^{(l)} - \alpha \left[ \frac{1}{m} \Delta \mathbf b^{(l)} \right]<br>\end{align*}</li>
+</ul>
+<p>其中 $\oplus$ 表示矩阵元素对应相加。</p>
+<p>总的来说，对于一个已有的神经网络模型，网络的结构、参数的形式都已经是确定的了，是不随训练样本改变的。所谓的训练，就是使模型的参数适应训练样本。这时，就将求解模型转换为了一个优化问题。如果我们有 $m$ 个训练样本，那么我们训练模型的终极目标是最小化 \eqref{ocf}. 梯度下降算法是每次迭代时，利用所有点来更新系数，使系数适应所有点，也就是其目标函数就是 \eqref{ocf}. 当 $m$ 很大时，每次迭代的计算成本会很高。随机梯度下降算法则是每次随机选取一个数据点来更新系数，使系数适应这个点，其目标函数是 \eqref{cf}. 其想法就是使参数不断适应随机选择的点从而期望参数最终能适应所有的点。考虑到 \eqref{cf} 和 \eqref{ocf} 的关系，这种思想也是不无道理的。Batch gradient descent 算法则是介于二者之间的。</p>
+<p>梯度下降算法是一种优化算法，而反向传播算法是一种求解偏微分的计算方法。</p>
 
           
         
