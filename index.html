@@ -318,7 +318,17 @@
       
         
           
-            
+            <p>本文主要参考了 <a href="http://ufldl.stanford.edu/wiki/index.php/Stacked_Autoencoders" target="_blank" rel="external">Stacked Autoencoders</a>.</p>
+<p>自编码堆叠可以看成是由多个自编码组成的神经网络。一个自编码网络有三层，输入层、隐层、输出层。隐层的值可以看做是对输入层数据内部结构的提取。自编码堆叠的基本思想就是依次训练稀疏自编码，将上一个自编码的隐层数据作为下一个自编码的输入。从而不断提取数据更深层次的信息。</p>
+<p>自编码的一个重要应用是用来对神经网络预训练，下面就是一个这样的例子。</p>
+<p>首先，用原始数据作为输入，训练一个稀疏自编码网络</p>
+<img src="/2017/01/05/自编码堆叠/Stacked_SparseAE_Features1.png" alt="Stacked_SparseAE_Features1.png" title="">
+<p>训练完成后，再用原始数据在隐层的输出值作为输入训练一个新的自编码网络</p>
+<img src="/2017/01/05/自编码堆叠/Stacked_SparseAE_Features2.png" alt="Stacked_SparseAE_Features2.png" title="">
+<p>最后再用第二个稀疏自编码的隐层数据训练一个 softmax 分类器</p>
+<img src="/2017/01/05/自编码堆叠/Stacked_Softmax_Classifier.png" alt="Stacked_Softmax_Classifier.png" title="">
+<p>将第一个稀疏自编码的输入和 softmax 分类器的输出以及每个稀疏自编码的隐层结合起来就可以构成一个完整的分类网络</p>
+<p><img src="/2017/01/05/自编码堆叠/Stacked_Combined.png" alt="$}</p> <p>预训练的网络参数可以作为初始值，在此基础上可以继续训练整个分类器网络。</p>" title="$}</p> <p>预训练的网络参数可以作为初始值，在此基础上可以继续训练整个分类器网络。</p>"></p>
           
         
       
