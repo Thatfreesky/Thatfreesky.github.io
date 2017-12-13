@@ -188,25 +188,8 @@ layout: default
 	</div>
 </div>
 
-<!DOCTYPE html>
 <html>
   <head>
-    
-    <link href="/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all">
-    {% if page.use_math %}
-      {% include mathjax_support %}
-    {% endif %}
+    {% include mathjax_support.html %}
   </head>
-  <body>
-    {% include navigation_bar %}
-    <div class="container-narrow">
-      <div class="content">
-        {{ content }}
-      </div>
-      <hr/>
-      {% include footer %}
-    </div>
-    {% include JB/analytics %}
-  </body>
 </html>

@@ -26,25 +26,6 @@ use_math: true
 
 ## 选择
 
-$wew$
-
-$$
-a + b = c
-$$
-
-
-\begin{equation}\label{asds}
-dsd
-\end{equation}
-
-suds
-\ref{asds}
-
-\begin{equation}
-dsddsdsf
-\end{equation}
-
-
 Let's test some inline math $x$, $y$, $x_1$, $y_1$.
 
 Now a inline math with special character: $|\psi\rangle$, $x'$, $x^\*$.
