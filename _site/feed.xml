@@ -5,8 +5,8 @@
     <description>找个地方写点东西 | 继续前进</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 13 Dec 2017 23:03:40 +0800</pubDate>
-    <lastBuildDate>Wed, 13 Dec 2017 23:03:40 +0800</lastBuildDate>
+    <pubDate>Wed, 13 Dec 2017 23:24:14 +0800</pubDate>
+    <lastBuildDate>Wed, 13 Dec 2017 23:24:14 +0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -79,56 +79,23 @@ Use iA writer&lt;/p&gt;
 
 &lt;p&gt;—— Hux 后记于 2015.10&lt;/p&gt;
 
-&lt;p&gt;Let’s test some inline math $x$, $y$, $x_1$, $y_1$.&lt;/p&gt;
+&lt;p&gt;$d$&lt;/p&gt;
 
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Now a inline math with special character: $&lt;/td&gt;
-      &lt;td&gt;\psi\rangle$, $x’$, $x^*$.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Test a display math:
-&lt;script type=&quot;math/tex&quot;&gt;|\psi_1\rangle = a|0\rangle + b|1\rangle&lt;/script&gt;
-Is it O.K.?&lt;/p&gt;
-
-&lt;p&gt;Test a display math with equation number:
-\begin{equation}
-   |\psi_1\rangle = a|0\rangle + b|1\rangle
-\end{equation}
-Is it O.K.?&lt;/p&gt;
-
-&lt;p&gt;Test a display math with equation number:
-&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-\begin{align}
-    |\psi_1\rangle &amp;= a|0\rangle + b|1\rangle \\\\
-    |\psi_2\rangle &amp;= c|0\rangle + d|1\rangle
-  \end{align} %]]&gt;&lt;/script&gt;
-Is it O.K.?&lt;/p&gt;
-
-&lt;p&gt;And test a display math without equaltion number:
-&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-\begin{align\*}
-    |\psi_1\rangle &amp;= a|0\rangle + b|1\rangle \\\\
-    |\psi_2\rangle &amp;= c|0\rangle + d|1\rangle
-  \end{align\*} %]]&gt;&lt;/script&gt;
-Is it O.K.?&lt;/p&gt;
-
-&lt;p&gt;Test a display math with equation number:
-\begin{align}
-    |\psi_1\rangle &amp;amp;= a|0\rangle + b|1\rangle \&lt;br /&gt;
-    |\psi_2\rangle &amp;amp;= c|0\rangle + d|1\rangle
-\end{align}
-Is it O.K.?&lt;/p&gt;
-
-&lt;p&gt;And test a display math without equaltion number:
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
 \begin{align*}
-    |\psi_1\rangle &amp;amp;= a|0\rangle + b|1\rangle \&lt;br /&gt;
-    |\psi_2\rangle &amp;amp;= c|0\rangle + d|1\rangle
-\end{align*}
-Is it O.K.?&lt;/p&gt;
+  &amp; \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  &amp; (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) &amp; \cdots &amp; \phi(e_1, e_n) \\
+      \vdots &amp; \ddots &amp; \vdots \\
+      \phi(e_n, e_1) &amp; \cdots &amp; \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{align*} %]]&gt;&lt;/script&gt;
 
 </description>
         <pubDate>Thu, 29 Jan 2015 20:00:00 +0800</pubDate>
