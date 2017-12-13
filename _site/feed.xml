@@ -5,8 +5,8 @@
     <description>找个地方写点东西 | 继续前进</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 13 Dec 2017 23:42:33 +0800</pubDate>
-    <lastBuildDate>Wed, 13 Dec 2017 23:42:33 +0800</lastBuildDate>
+    <pubDate>Thu, 14 Dec 2017 00:30:31 +0800</pubDate>
+    <lastBuildDate>Thu, 14 Dec 2017 00:30:31 +0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -21,6 +21,14 @@
 Use iA writer&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;#build&quot;&gt;跳过废话，直接看技术实现 &lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In equation \eqref{eq:sample}, we find the value of an
+interesting integral:&lt;/p&gt;
+
+&lt;p&gt;\begin{equation}
+  \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
+  \label{eq:sample}
+\end{equation}&lt;/p&gt;
 
 &lt;p&gt;2015 年，Hux 总算有个地方可以好好写点东西了。&lt;/p&gt;
 
